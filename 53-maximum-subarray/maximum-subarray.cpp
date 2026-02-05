@@ -15,7 +15,6 @@ public:
                 max = sum;
             }
         }
-
         if(max == 0){
             int k = 0;
             int max1 = nums[0];
