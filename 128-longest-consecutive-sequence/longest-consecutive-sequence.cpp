@@ -2,6 +2,8 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
 
+/*
+
         //Only count when the previous number doesn’t exist.
         //If a number is not a sequence start, it must not execute any counting logic
         // If I loop over a set, I must use the loop variable (x), not array indexing.
@@ -34,5 +36,40 @@ public:
             count = max(temp,count);  //Update global maximum
         }
         return count;
+*/
+
+        
+        int n=nums.size();
+        int count=0;
+        int maxCount=INT_MIN;
+        
+        //if no elements in array
+        if(n==0){
+            return 0;
+        } 
+        //sort the array
+        sort(nums.begin(), nums.end());
+
+        for(int i=0;i<n;i++){
+            //start from first element
+            if(i==0){
+                count++;
+            }
+            //if num in middle of seq-> skip it
+            else if(nums[i]==nums[i-1]){
+                continue;
+            } 
+            // if number start ele-> count it
+            else if(nums[i]==(nums[i-1]+1)){
+                count++;
+            }
+            else{
+                maxCount=max(maxCount, count);
+                count=1; //start from counting ele so 1, not 0
+            }
+        }
+        maxCount=max(maxCount, count);
+        return maxCount;
+
     }
 };
