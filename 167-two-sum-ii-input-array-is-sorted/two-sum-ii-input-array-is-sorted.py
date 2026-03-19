@@ -14,5 +14,5 @@ class Solution(object):
                 return [l+1,r+1]
             elif s < target:
                 l += 1
-            elif s > target:            
+            else:            
                 r -= 1
