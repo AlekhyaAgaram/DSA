@@ -10,8 +10,7 @@ class Solution(object):
 
         while l<r:
             vol = (r-l)*min(height[l],height[r])
-            if(vol > max_vol):
-                max_vol = vol
+            max_vol = max(vol,max_vol)
 
             if height[l] < height[r]:
                 l += 1
