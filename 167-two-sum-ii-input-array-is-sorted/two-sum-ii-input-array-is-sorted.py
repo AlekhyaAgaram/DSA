@@ -9,9 +9,10 @@ class Solution(object):
         r = len(numbers) - 1
 
         while(l<r):
-            if((numbers[l]+numbers[r]) == target):
+            s = numbers[l]+numbers[r]
+            if(s == target):
                 return [l+1,r+1]
-            elif(numbers[l]+numbers[r] < target):
+            elif(s < target):
                 l = l + 1
-            elif(numbers[l]+numbers[r] > target):            
+            elif(s > target):            
                 r = r - 1
