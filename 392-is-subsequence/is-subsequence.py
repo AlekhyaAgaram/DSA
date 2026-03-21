@@ -11,11 +11,9 @@ class Solution(object):
         if s == "":
             return True
 
-        while i < len(t) and  j < len(s):
-            if(t[i] == s[j]):
-                j += 1
-            i +=1
-        if j == len(s):
-            return True
-        return False
+        for char in t:
+            if j<len(s) and char == s[j]:
+                j+=1
+
+        return j == len(s)
         
