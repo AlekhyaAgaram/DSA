@@ -10,14 +10,10 @@ class Solution(object):
         for i in magazine:
              freq[i] = freq.get(i,0)+1
 
-        mp = {}
         for i in ransomNote:
-            mp[i] = mp.get(i,0)+1
-            if i in freq:
-                if mp[i] > freq[i]:
-                    return False
-            else:
+            if i not in freq or freq[i] <= 0:
                 return False
+            freq[i] -= 1
         return True
 
         
