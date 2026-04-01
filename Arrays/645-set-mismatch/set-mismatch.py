@@ -11,14 +11,7 @@ class Solution(object):
 
         for i in nums:
             mp[i] += 1
-
-            """
-            if mp[i] > 1:
-                if i+1 not in nums and i+1 <= len(nums):
-                    return[i,i+1]
-                elif i-1 not in nums:
-                    return [i,i-1]
-            """
+            
         for i in mp:
             if mp[i]>1:
                 lol = i
