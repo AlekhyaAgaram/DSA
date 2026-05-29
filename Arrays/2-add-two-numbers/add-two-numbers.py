@@ -14,7 +14,7 @@ class Solution(object):
         head = ListNode(0)
         q = head
 
-        while((l1 is not None) or (l2 is not None) or (carry != 0)):
+        while(l1 or l2 or (carry != 0)):
 
             if l1:
                 v1 = l1.val
@@ -31,10 +31,7 @@ class Solution(object):
             tval = v1 + v2 + carry
             
             carry = tval // 10
-            digit = tval % 10
-            temp = ListNode(digit)
-            #if(carry != 0 ):
-               # temp = ListNode(carry)
+            temp = ListNode(tval % 10)
 
             q.next = temp
             q = temp
