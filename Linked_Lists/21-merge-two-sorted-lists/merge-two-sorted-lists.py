@@ -14,21 +14,16 @@ class Solution(object):
         q = dummy
 
         while(list1 and list2):
-            if(list1.val < list2.val):
-                t = list1.val
+            if(list1.val <= list2.val):
+                q.next = list1
                 list1 = list1.next
             else:
-                t = list2.val
+                q.next = list2
                 list2 = list2.next
-
-            temp = ListNode(t)
-            q.next = temp
             q = q.next
 
         if list1:
             q.next = list1
-            q = q.next
-        elif list2:
+        else:
             q.next = list2
-            q = q.next
         return dummy.next
