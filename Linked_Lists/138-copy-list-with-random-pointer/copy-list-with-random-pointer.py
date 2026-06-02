@@ -18,6 +18,9 @@ class Solution(object):
         p = head
         d = {}
 
+        if head == None:
+            return None
+
         while(p!=None):
             # copy value and create copy node q
             temp = Node(p.val)
@@ -33,7 +36,7 @@ class Solution(object):
         a = dummy.next
         b = head
         while(b!=None):
-            if(b.random):
+            if b.random is not None:
                 a.random = d[b.random]
             a = a.next
             b = b.next
