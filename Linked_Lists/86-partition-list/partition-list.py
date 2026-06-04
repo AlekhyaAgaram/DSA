@@ -16,7 +16,6 @@ class Solution(object):
         less = less_head
         great = great_head
         curr = head
-        dummy = less.next
 
         while(curr !=None):
             if curr.val >= x:
