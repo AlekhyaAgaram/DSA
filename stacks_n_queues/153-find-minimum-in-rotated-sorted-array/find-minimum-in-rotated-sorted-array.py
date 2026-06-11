@@ -12,10 +12,10 @@ class Solution:
                     res = min(res, nums[l])
                     break
 
-                # If left half is sorted, the minimum must be in the right half
+                # If mid element is greater than the right element,the minimum is definitely in the right half.
                 if nums[mid] > nums[r]:
                     l = mid + 1
-                # Otherwise, the right half is sorted, so minimum is in the left half
+                # Otherwise, the minimum is at mid or to the left.
                 else:
                     r = mid 
             return res
