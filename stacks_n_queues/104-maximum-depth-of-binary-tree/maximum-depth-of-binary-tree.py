@@ -10,11 +10,12 @@ class Solution:
             return 0
 
         depth = 0
-        stack = deque([root])
+        stack = [root]
         while stack:
             n = len(stack)
             for i in range(n):
-                node = stack.popleft()
+                #supposed to use quqeue - instead pop from stack front
+                node = stack.pop(0)
                 if node.left:
                     stack.append(node.left)
                 if (node.right):
