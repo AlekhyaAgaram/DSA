@@ -9,6 +9,9 @@ class Solution:
         if root is None:
             return 0
 
+        """
+        #what i tried on my own
+
         depth = 0
         stack = [root]
         while stack:
@@ -22,3 +25,8 @@ class Solution:
                     stack.append(node.right)
             depth += 1
         return depth
+
+        """
+        return 1 + max(self.maxDepth(root.left),self.maxDepth(root.right))
+
+    
