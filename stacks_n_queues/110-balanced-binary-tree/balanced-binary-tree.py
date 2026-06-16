@@ -6,6 +6,7 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        self.ans = True
             
         def dfs(node):
             if node is None:
@@ -13,7 +14,16 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
 
+            if abs(left - right) > 1 :
+                self.ans = False
+
             return 1 + max(left,right)
+        
+        
+        dfs(root)
+        return self.ans
+
+        """
 
         if root is None:
             return True
@@ -36,3 +46,4 @@ class Solution:
                     queue.append(node.right)
                 
         return True
+        """
