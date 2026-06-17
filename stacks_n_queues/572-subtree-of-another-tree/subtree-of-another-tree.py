@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        q1 = [root]
+        q1 = deque([root])
 
         def isSame(p,q):
             if p==q==None:
@@ -24,7 +24,7 @@ class Solution:
         while q1:
             n = len(q1)
             for i in range(n):
-                node = q1.pop(0)
+                node = q1.popleft()
 
                 if node.val == subRoot.val:
                     if isSame(node,subRoot):
