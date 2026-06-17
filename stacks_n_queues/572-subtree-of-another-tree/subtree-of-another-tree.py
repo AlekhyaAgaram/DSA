@@ -6,20 +6,32 @@
 #         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        q1 = deque([root])
 
+        # If the main tree is empty, subRoot cannot be a subtree
+        if not root: 
+            return False
+
+        
         def isSame(p,q):
             if p==q==None:
                 return True
-            elif p==None and q!=None: 
-                return False
-            elif p!=None and q==None:
-                return False
-            elif p.val != q.val:
+            if not p or not q or p.val != q.val:
                 return False
 
             return isSame(p.left,q.left) and isSame(p.right,q.right)
+
+
+        # If the current trees match, we found it
+        if isSame(root, subRoot):
+            # Check the left and right children recursively
+            return True
+        
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+        
+
+        """
     
+        q1 = deque([root])
 
         while q1:
             n = len(q1)
@@ -35,3 +47,5 @@ class Solution:
 
         
         return False
+
+        """
