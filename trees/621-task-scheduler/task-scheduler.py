@@ -7,6 +7,7 @@ class Solution:
             else:
                 mp[i] = 1
         
+        """
         max_heap = [-cnt for cnt in mp.values()]
         heapq.heapify(max_heap)
 
@@ -28,3 +29,14 @@ class Solution:
                 heapq.heappush(max_heap, cnt)
 
         return time
+        """
+        #GREEDY SOLUTION
+        freq=[0]*26
+        for x in tasks:
+            freq[ord(x)-ord('A')]+=1
+        maxi=max(freq)
+        c=0
+        for i in freq:
+            if i==maxi:
+                c+=1
+        return max(len(tasks),(maxi-1)*(n+1)+c)
