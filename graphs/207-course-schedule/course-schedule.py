@@ -1,33 +1,33 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         n = numCourses
+
         adj = [[] for _ in range(n)]
+        inDegree = [0]*n
 
-        for a,b in prerequisites:
-            adj[a].append(b)
+        for dest, src in prerequisites:
+            adj[src].append(dest)
+            inDegree[dest] += 1
 
-        #state 0=not visited, 1=visiting, 2= visited
-        state = [0]*n
-
-        def dfs(node):
-            if state[node] == 1:#cycle found
-                return False
-            if state[node] == 2:#state already visited
-                return True
-
-            state[node] = 1 #mark curr node being explored
-
-            for neigh in adj[node]:
-                if not dfs(neigh):#if cycle founf
-                    return False
-                    
-            state[node] = 2 #mark curr node cycle done
-            return True
+        q = deque()
+        order = [0]*n
+        index = 0
 
         for i in range(n):
-            if state[i] == 0:
-                if not dfs(i):
-                    return False
+            if inDegree[i] == 0:
+                q.append(i)
+
+        while q:
+            node = q.popleft()
+            order[index] = node
+            index += 1
+            for i in adj[node]:
+                inDegree[i] -= 1
+                if inDegree[i] == 0:
+                    q.append(i)
+
+        if index != n:
+            return False
 
         return True
 
