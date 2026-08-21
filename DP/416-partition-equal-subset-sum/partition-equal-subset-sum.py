@@ -1,3 +1,4 @@
+import collections
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         n = len(nums)
@@ -9,17 +10,13 @@ class Solution:
         if tot_sum%2 == 1:
             return False
 
-        target = tot_sum/2
+        target = tot_sum//2
+        
+        dp = [False] * (target + 1)
+        dp[0] = True
 
-        sums = {0}
+        for i in nums:
+            for j in range(target, i-1, -1):
+                dp[j] = dp[j] or dp[j-i]
 
-        for num in nums:
-            curr = list(sums)
-            for i in curr:
-                new = i + num
-                if new == target:
-                    return True
-                elif new < target:
-                    sums.add(new)
-
-        return False
+        return dp[target]
