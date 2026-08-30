@@ -1,5 +1,7 @@
 class Solution:
     def lastStoneWeightII(self, stones: List[int]) -> int:
+
+        """
         n = len(stones)
         total = 0
         for i in range(n):
@@ -22,3 +24,23 @@ class Solution:
                 ans = min(ans, total - 2*(s))
 
         return ans
+        """
+        #ID approach
+        total = sum(stones)
+        target = total // 2
+        
+        # dp[j] is True if a subset sum of j is possible
+        dp = [False] * (target + 1)
+        dp[0] = True
+        
+        for weight in stones:
+            # Iterate backwards so each stone is used at most once
+            for j in range(target, weight - 1, -1):
+                dp[j] = dp[j] or dp[j - weight]
+                
+        # Find the largest possible sum <= total // 2
+        for s in range(target, -1, -1):
+            if dp[s]:
+                return total - 2 * s
+                
+        return 0
