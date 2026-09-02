@@ -1,23 +1,31 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
 
-class Solution(object):
-    def hasCycle(self, head):
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        #Using HashSet - O(n) Time and O(n) Space
         """
-        :type head: ListNode
-        :rtype: bool
-        """
-        q = head
-        s = set()
+        st = set()
 
-        while(q!= None):
-            if(q not in s):
-                s.add(q)  
-                q = q.next
-            else:
+        while head is not None:
+            if head in st:
                 return True
-        return False  
-        
+
+            st.add(head)
+            head = head.next
+        return False
+        """
+        #Using Floyd's Cycle-Finding Algorithm - O(n) Time and O(1) Space
+        slow = head
+        fast = head
+
+        while slow and fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow == fast:
+                return True
+        return False
